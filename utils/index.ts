@@ -1,5 +1,8 @@
 import { CarProps, FilterProps } from "@/types";
 
+const xRapidAPIKey = process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY;
+const xRapidAPIHost = process.env.NEXT_PUBLIC_X_RAPIDAPI_HOST;
+
 export const calculateCarRent = (city_mpg: number, year: number) => {
   const basePricePerDay = 50; // Base rental price per day in dollars
   const mileageFactor = 0.1; // Additional rate per mile driven
@@ -36,7 +39,9 @@ export const deleteSearchParams = (type: string) => {
   newSearchParams.delete(type.toLocaleLowerCase());
 
   // Construct the updated URL pathname with the deleted search parameter
-  const newPathname = `${window.location.pathname}?${newSearchParams.toString()}`;
+  const newPathname = `${
+    window.location.pathname
+  }?${newSearchParams.toString()}`;
 
   return newPathname;
 };
@@ -46,8 +51,8 @@ export async function fetchCars(filters: FilterProps) {
 
   // Set the required headers for the API request
   const headers: HeadersInit = {
-    "X-RapidAPI-Key": "acb7d12593msh0bcee0ac3824691p13c0e0jsn8ae30b00a1d6",
-    "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
+    "X-RapidAPI-Key": xRapidAPIKey as string,
+    "X-RapidAPI-Host": xRapidAPIHost as string,
   };
 
   // Set the required headers for the API request
